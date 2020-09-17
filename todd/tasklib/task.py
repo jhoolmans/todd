@@ -211,4 +211,5 @@ class Task:
         res = re.sub(Task._rec_int_regex, PLHR, res)
         res = re.sub(Task._context_regex, PLHR, res)
         res = re.sub(Task._plhr_regex, PLHR, res)
+        res = re.sub(Task._tag_regex, PLHR, res)
         return res.strip(PLHR)

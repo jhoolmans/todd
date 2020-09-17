@@ -264,8 +264,8 @@ class MainUI:
         t = focus.task
         if t.raw:
             t.update_relative_due_date()
-            if not t.creation_date:
-                t.set_creation_date(Util.get_today())
+            # if not t.creation_date:
+            #     t.set_creation_date(Util.get_today())
             self.update_footer("")
             self.tasklist.save()
         elif idx == 0:
@@ -287,7 +287,7 @@ class MainUI:
                 self.tasklist.insert_new(-1, t.raw)  # insert done
                 t.update(last)
                 t.set_due(rec)
-                t.set_creation_date(Util.get_today())
+                # t.set_creation_date(Util.get_today())
             else:
                 self.listbox.move_offs(1)
             self.archive_tasks()  # save & update list
@@ -451,10 +451,12 @@ class MainUI:
         elif self.key_bindings.is_bound_to(key, "reload"):
             self.reload_tasklist_from_file()
 
-    def main(self, enable_word_wrap=False):
+    def main(self, enable_word_wrap=False, view_days=7):
 
         if enable_word_wrap:
             self.toggle_wrapping()
+
+        self.view_days = view_days or 7
 
         self.fill_listbox()
 

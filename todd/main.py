@@ -127,9 +127,10 @@ def main():
         )
 
     enable_word_wrap = get_boolean_config_option(cfg, "settings", "enable-word-wrap")
+    view_days = int(dict(cfg.items('settings')).get('view_days', 7))
 
     view = MainUI(tasklist, keyBindings, colorscheme)
-    view.main(enable_word_wrap)  # start up the urwid UI event loop
+    view.main(enable_word_wrap, view_days)  # start up the urwid UI event loop
 
     # Final save
     view.tasklist.save()

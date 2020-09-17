@@ -44,12 +44,15 @@ class TaskItem(urwid.WidgetWrap):
             else:
                 rec_text = ""
 
-            main = urwid.Text((text_col, t.get_desc()), wrap=self.wrapping)
+            desc = t.get_desc()
+            tags = ' '.join(t.tags)
+
+            main = urwid.Text([(text_col, desc), " ", ('context', tags)], wrap=self.wrapping)
             due = urwid.Text((status_col, due_name))
             rec = urwid.Text(("plain", rec_text))
             context = urwid.Text(("context", ",".join(t.contexts)))
             text = urwid.Columns(
-                [("weight", 10, main), (12, due), (12, rec), (15, context)], dividechars=2
+                [("weight", 15, main), (12, due), (25, context)], dividechars=2
             )
 
         self._w = urwid.AttrMap(
